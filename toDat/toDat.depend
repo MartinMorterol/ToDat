@@ -1,0 +1,22 @@
+# depslib dependency file v1.0
+1418976276 source:/users/lahdak/morterol/ToDat/toDat/main.cpp
+	<string>
+	<fstream>
+	<iostream>
+	<cstdlib>
+	<iostream>
+	<stdio.h>
+	<dirent.h>
+	<string>
+	<vector>
+	<vector>
+	<sstream>
+	<iostream>
+	<iterator>
+	<set>
+	<map>
+	<algorithm>
+	<functional>
+	<cctype>
+	<locale>
+
