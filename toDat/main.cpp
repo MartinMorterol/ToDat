@@ -2,14 +2,11 @@
 #include <fstream>
 #include <iostream>
 #include <cstdlib>
-#include <iostream>
 #include <stdio.h>
 #include <dirent.h>
 #include <string>
 #include <vector>
-#include <vector>
 #include <sstream>
-#include <iostream>
 #include <iterator>
 #include <set>
 #include <map>
@@ -37,123 +34,6 @@ static inline std::string& trim(std::string &s) {
 }
 
 using namespace std;
-struct CleeValeur
-{
-    CleeValeur(string uneClee, string uneValeur) : clee(uneClee),valeur(uneValeur) {
-
-        std::size_t found = valeur.find('.');
-        if (found!=std::string::npos)
-            valeur[found] = ',';
-    }
-    string clee;
-    string valeur;
-};
-
-struct FichierValeur
-{
-    string nom;
-    vector<CleeValeur> vecCleeValeur;
-    FichierValeur(string unNom) : nom(unNom) {}
-    void add (CleeValeur cv) {vecCleeValeur.push_back(cv); }
-};
-
-struct FutureCSV
-{
-    string nom;
-    vector<FichierValeur> vecFichierValeur;
-    FutureCSV(string unNom) : nom(unNom) {}
-    set<int> setClee;
-    void nouveauFichier(string unNom) {vecFichierValeur.push_back({unNom}); };
-    void addFichierCourant(CleeValeur cv ){
-        vecFichierValeur.back().add(cv);
-        // ça marche car les indice sont pas a virgule
-        setClee.insert(std::stoi(cv.clee));
-        }
-
-    void toCSV()
-    {
-        std::ofstream file( nom+".csv", std::ios_base::app );
-        // on met tout sous une map parce que les map, c'est simple :)
-        map<int,vector<string>> laMap;
-        for ( auto clee : setClee )
-        {
-            laMap.insert({clee,{}});
-        }
-        // on remplit :)
-        vector<string> entete{""};
-
-        for (auto& fv : vecFichierValeur )
-        {
-            // je veux que toutes les valeurs de la map soit a "" si vide
-            for ( auto clee : setClee )
-            {
-                laMap[clee].push_back("");
-            }
-
-            entete.push_back(fv.nom);
-
-            // on met vraiment les valeur
-            std::cout << fv.vecCleeValeur.size()<<endl;;
-            for (auto cv : fv.vecCleeValeur )
-            {
-
-                laMap[std::stoi(cv.clee)].back()=cv.valeur;
-            }
-        }
-
-        // affichage
-        for (  auto v : entete )
-        {
-            file << v << ";";
-        }
-        file << "\n";
-        for ( auto pairIntVec : laMap )
-        {
-
-           file <<  pairIntVec.first << ";";
-           for ( auto unString : pairIntVec.second )
-           {
-               file <<  unString << ";";
-           }
-           file << "\n";
-        }
-    }
-};
-
- vector<string> liste()
-{
-   DIR * repertoire = opendir(".");
-   vector<string> retour;
-   if ( repertoire == NULL)
-   {
-      cout << "Impossible de lister le répertoire" << endl;
-   }
-   else
-   {
-      struct dirent * ent;
-
-      while ( (ent = readdir(repertoire)) != NULL)
-      {
-
-             retour.push_back(ent->d_name);
-
-      }
-      closedir(repertoire);
-   }
-    return retour;
-}
-vector<string> listeClean(string& nomFichier)
-{
-    nomFichier = string(nomFichier.begin()+2,nomFichier.end());
-    auto vec = liste();
-    vector<string> retour;
-    for (auto unFichier : vec )
-    {
-         if ( unFichier != "." && unFichier != ".." && unFichier != nomFichier )
-            retour.push_back(unFichier);
-    }
-    return retour;
-}
 
 bool isReversible (string& deuxiemePartieDeLigne )
 {
@@ -253,16 +133,68 @@ bool isExt (string meta)
         return true;
     return false;
 }
+
+void analyzeReaction(string reaction, string separateur,    set<string>& setEnzime ,    set<string>& meta ,     vector<string>& cat )
+{
+    auto pos = reaction.find(separateur);
+    string debut = reaction.substr(0,pos);
+    debut = trim(debut);
+
+    string fin = reaction.substr(pos+separateur.size());
+    fin = trim(fin);
+
+    auto vec_nom = decoupe(debut," + ") ;
+    removeElem(vec_nom,"+");
+    size_t    cpt =0;
+    for ( auto s : vec_nom)
+    {
+
+        s = replaceAll(s ," ","_");
+        s = fixStochio(s);
+        cat.back() += s;
+         cpt++;
+        if ( cpt != vec_nom.size() )
+        {
+             cat.back() += " + ";
+        }
+        else
+        {
+            cat.back() += " = ";
+        }
+        //cout << s << endl;
+
+        auto nom_final = decoupe(s," ");
+        meta.insert(nom_final.back());
+    }
+
+    vec_nom = decoupe(fin," + ") ;
+    removeElem(vec_nom,"+");
+    cpt=0;
+    for ( auto s : vec_nom)
+    {
+        s = replaceAll(s ," ","_");
+        s = fixStochio(s);
+        cat.back() += s;
+         cpt++;
+        if ( cpt != vec_nom.size() )
+        {
+             cat.back() += " + ";
+        }
+       // cout << s << endl;
+
+        auto nom_final = decoupe(s," ");
+        meta.insert(nom_final.back());
+    }
+    auto temp = decoupe(fin," + ") ;
+}
 int main(int argc,char** argv)
 {
     string nom  ;
-    cout << "DANGER : il faut que les + soit bien entouré d'espace pour pas etre confondu avec (+)" << endl;
-    cout << "DANGER : notation en 1/2 " << endl;
     if ( argc < 2 )
     {
         cout << "Il faut au moins un argument "<<endl;;
         cout.flush();
-        nom = "/users/lahdak/morterol/Bureau/catabolique_simple.txt";
+        nom = "C:/Users/Martin/Desktop/catabolique_simple.txt";
 
     }
     else
@@ -281,7 +213,7 @@ int main(int argc,char** argv)
 
         std::string ligne; // variable contenant chaque ligne lue
         // cette boucle s'arrête dès qu'une erreur de lecture survient
-        size_t cpt = 0;
+
         while ( std::getline( fichier, ligne ) )
         {
             auto position = ligne.find(":");
@@ -289,133 +221,21 @@ int main(int argc,char** argv)
             string nomEnzime = trim(temp);
             nomEnzime = replaceAll(nomEnzime ," ","_");
             cat.push_back(string(nomEnzime+ " : "));
+
             string deuxieme_partie = ligne.substr(position+1);
-            /// en fait je pense qu'il y apas besoin
-            //deuxieme_partie = replaceAll(deuxieme_partie,",",".");
 
             if ( isReversible(deuxieme_partie) )
             {
-                auto pos = deuxieme_partie.find("<->");
-                string debut = deuxieme_partie.substr(0,pos);
-                debut = trim(debut);
-
-
-                string fin = deuxieme_partie.substr(pos+3);
-                fin = trim(fin);
-
-
-
-                auto vec_nom = decoupe(debut," + ") ;
-                removeElem(vec_nom,"+");
-                cpt =0;
-                for ( auto s : vec_nom)
-                {
-
-                    s = replaceAll(s ," ","_");
-                    s = fixStochio(s);
-                    cat.back() += s;
-                     cpt++;
-                    if ( cpt != vec_nom.size() )
-                    {
-                         cat.back() += " + ";
-                    }
-                    else
-                    {
-                        cat.back() += " = ";
-                    }
-                    //cout << s << endl;
-
-                    auto nom_final = decoupe(s," ");
-                    meta.insert(nom_final.back());
-                }
-
-                vec_nom = decoupe(fin," + ") ;
-                removeElem(vec_nom,"+");
-                cpt=0;
-                for ( auto s : vec_nom)
-                {
-                    s = replaceAll(s ," ","_");
-                    s = fixStochio(s);
-                    cat.back() += s;
-                     cpt++;
-                    if ( cpt != vec_nom.size() )
-                    {
-                         cat.back() += " + ";
-                    }
-                   // cout << s << endl;
-
-                    auto nom_final = decoupe(s," ");
-                    meta.insert(nom_final.back());
-                }
-
-                auto temp = decoupe(fin," + ") ;
-
-
-                //cout << "__" << endl;
-
+                analyzeReaction(deuxieme_partie,"<->",enzimeR,meta,cat);
                 enzimeR.insert(nomEnzime);
             }
             else
             {
-                 auto pos = deuxieme_partie.find("->");
-                string debut = deuxieme_partie.substr(0,pos);
-                debut = trim(debut);
-
-
-                string fin = deuxieme_partie.substr(pos+2);
-                fin = trim(fin);
-
-
-
-                auto vec_nom = decoupe(debut," + ") ;
-                removeElem(vec_nom,"+");
-                cpt=0;
-                for ( auto s : vec_nom)
-                {
-                    s = replaceAll(s ," ","_");
-                    s = fixStochio(s);
-                    cat.back() += s;
-                     cpt++;
-                    if ( cpt != vec_nom.size() )
-                    {
-                         cat.back() += " + ";
-                    }
-                    else
-                    {
-                        cat.back() += " = ";
-                    }
-                    //cout << s << endl;
-
-                    auto nom_final = decoupe(s," ");
-                    meta.insert(nom_final.back());
-                }
-
-                vec_nom = decoupe(fin," + ") ;
-                removeElem(vec_nom,"+");
-                cpt=0;
-                for ( auto s : vec_nom)
-                {
-                    s = replaceAll(s ," ","_");
-                    s = fixStochio(s);
-                    cat.back() += s;
-                     cpt++;
-                    if ( cpt != vec_nom.size() )
-                    {
-                         cat.back() += " + ";
-                    }
-                   // cout << s << endl;
-
-                    auto nom_final = decoupe(s," ");
-                    meta.insert(nom_final.back());
-                }
-
-                auto temp = decoupe(fin," + ") ;
-
-
-                //cout << "__" << endl;
-
+                analyzeReaction(deuxieme_partie,"->",enzimeI,meta,cat);
                 enzimeI.insert(nomEnzime);
             }
+
+
 
         }
 
@@ -453,10 +273,6 @@ int main(int argc,char** argv)
         cout << "-CAT"<< endl;
         for (auto s : cat )
         {
-            if (s.substr(s.size()-3) == " + ")
-            {
-                s = s.substr(0,s.size()-3);
-            }
             cout << s << endl;
         }
 

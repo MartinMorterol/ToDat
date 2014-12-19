@@ -1,14 +1,12 @@
-DANGER : il faut que les + soit bien entouré d'espace pour pas etre confondu avec (+)
-DANGER : notation en 1/2 
 Il faut au moins un argument 
 -ENZREV
 ATPase ackA_1 adhE_1 aldB_1 brnQ_1 brnQ_2 brnQ_3 butB_1 citB_1 enoAB_1 fbaA_1 femD_1 frdC_1 galE_1 galM_1 gapAB_1 gltA_1 hasC_1 ilvC_1 ilvC_2 lacC_1 lacS_1 ldh_1 pAALD_1 pACET_1 pACTN_1 pALCTT_1 pBDOH_1 pCO2_1 pDTYL_1 pETOH_1 pFORM_1 pGALC_1 pH(2)O_1 pLCTT_1 pO2_1 pPYR_1 pfl_1 pgiA_1 pgk_1 pgmB_1 pmg_1 pta_1 pycA_1 tpiA_1 unk_10 unk_11 unk_5 xylM_1 xylM_4 
 -ENZIRREV
 ATPm ATPp_1 adhA_1 als_1 butA_1 chem_1 citE_1 fbp_1 galK_1 galT_1 glk_1 icd_1 ilvA_1 ilvBN_1 ilvB_2 ilvD_1 ilvD_2 lacG_1 lacZ_1 mae_1 mleS_1 nox_1 nox_2 pGLUC_1 pdh_1 pfk_1 poxL_1 pstC_1 pstC_2 ptGALC_1 ptLACT_1 ptnC_1 ptnC_5 pyk_1 unk_16 unk_4 
 -METINT
-(R,R)-butane-2,3-diol (S)-lactate (S)-malate 0.5_O(2) 2,3-dihydroxy-3-methylbutanoate 2,3-dihydroxy-3-methylpentanoate 2-aceto-2-hydroxybutanoate 2-acetoin 2-acetolactate 2-oxobutanoate 2-oxoglutarate 2-phospho-D-glycerate 3-methyl-2-oxobutanoate 3-methyl-2-oxopentanoate 3-phospho-D-glycerate 3-phospho-D-glyceroyl_phosphate 3H(+) ADP ATP CO(2) CoA CoA_+NAD(+) D-fructose_1,6-bisphosphate D-fructose_6-phosphate D-galactose D-galactose_6-phosphate D-glucosamine_6-phosphate D-glucose D-glucose_1-phosphate D-glucose_6-phosphate D-glyceraldehyde_3-phosphate D-tagatose_1,6-bisphosphate D-tagatose_6-phosphate FAD FADH(2) H(+) H(2)0 H(2)O H(2)O(2) L-isoleucine L-leucine L-threonine L-valine NAD(+) NADH NADH+_(H)+ NADP(+) NADPH NH(3) O(2) UDP-galactose UDP-glucose UTP acetaldehyde acetate acetyl-CoA acetyl_phosphate alpha-D-galactose_1-phosphate beta-D-galactose beta-D-glucose beta-D-glucose_1-phosphate beta-D-glucose_6-phosphate beta-lactose citrate diacetyl diphosphate ethanol formate fumarate glycerone_phosphate isocitrate lactose lactose_6-phosphate oxaloacetate phosphate phosphoenolpyruvate pyruvate succinate succinyl-CoA 
+(R,R)-butane-2,3-diol (S)-lactate (S)-malate 1/2_O(2) 2,3-dihydroxy-3-methylbutanoate 2,3-dihydroxy-3-methylpentanoate 2-aceto-2-hydroxybutanoate 2-acetoin 2-acetolactate 2-oxobutanoate 2-oxoglutarate 2-phospho-D-glycerate 3-methyl-2-oxobutanoate 3-methyl-2-oxopentanoate 3-phospho-D-glycerate 3-phospho-D-glyceroyl_phosphate 3H(+) ADP ATP CO(2) CoA CoA_+NAD(+) D-fructose_1,6-bisphosphate D-fructose_6-phosphate D-galactose D-galactose_6-phosphate D-glucosamine_6-phosphate D-glucose D-glucose_1-phosphate D-glucose_6-phosphate D-glyceraldehyde_3-phosphate D-tagatose_1,6-bisphosphate D-tagatose_6-phosphate FAD FADH(2) H(+) H(2)0 H(2)O H(2)O(2) L-isoleucine L-leucine L-threonine L-valine NAD(+) NADH NADH+_(H)+ NADP(+) NADPH NH(3) O(2) UDP-galactose UDP-glucose UTP acetaldehyde acetate acetyl-CoA acetyl_phosphate alpha-D-galactose_1-phosphate beta-D-galactose beta-D-glucose beta-D-glucose_1-phosphate beta-D-glucose_6-phosphate beta-lactose citrate diacetyl diphosphate ethanol formate fumarate glycerone_phosphate isocitrate lactose lactose_6-phosphate oxaloacetate phosphate phosphoenolpyruvate pyruvate succinate succinyl-CoA 
 -METEXT
-AALDext ACEText ACTNext ALCTText BDOHext CO(2)ext DTYLext ETOHext FORMext GALCext GLUCext GLUMext H(+)ext H(2)Oext ILEext LACText LCTText LEUext O(2)ext PPiext PYRext Piext VALext 
+3H(+)ext AALDext ACEText ACTNext ALCTText BDOHext CO(2)ext DTYLext ETOHext FORMext GALCext GLUCext GLUMext H(+)ext H(2)Oext ILEext LACText LCTText LEUext O(2)ext PPiext PYRext Piext VALext 
 -CAT
 glk_1 : ATP + D-glucose = ADP + D-glucose_6-phosphate
 pgiA_1 : D-glucose_6-phosphate = D-fructose_6-phosphate
@@ -57,7 +55,7 @@ chem_1 : 2-acetolactate + O(2) = diacetyl + CO(2)
 butA_1 : diacetyl + NADH + H(+) = 2-acetoin + NAD(+)
 mleS_1 : (S)-malate = (S)-lactate + CO(2)
 mae_1 : (S)-malate + NAD(+) = pyruvate + CO(2) + NADH
-nox_1 : 0.5_O(2) + NADH + H(+) = H(2)O + NAD(+)
+nox_1 : 1/2_O(2) + NADH + H(+) = H(2)O + NAD(+)
 poxL_1 : pyruvate + phosphate + O(2) + H(2)O = acetyl_phosphate + CO(2) + H(2)O(2)
 nox_2 : NADH + H(+) + O(2) = H(2)O(2) + NAD(+)
 ilvA_1 : L-threonine + H(2)O = 2-oxobutanoate + NH(3) + H(2)O
@@ -95,4 +93,100 @@ pstC_1 : Piext + H(+)ext = phosphate + H(+)
 pstC_2 : PPiext + H(+)ext = diphosphate + H(+)
 pH(2)O_1 : H(2)Oext = H(2)O
 ATPm : ATP = ADP + phosphate
-ATPase : 3 H(+)ext + ADP + phosphate = ATP + 3H(+) + H(2)0
+ATPase : 3H(+)ext + ADP + phosphate = ATP + 3H(+) + H(2)0
+Il faut au moins un argument 
+-ENZREV
+ATPase ackA_1 adhE_1 aldB_1 brnQ_1 brnQ_2 brnQ_3 butB_1 citB_1 enoAB_1 fbaA_1 femD_1 frdC_1 galE_1 galM_1 gapAB_1 gltA_1 hasC_1 ilvC_1 ilvC_2 lacC_1 lacS_1 ldh_1 pAALD_1 pACET_1 pACTN_1 pALCTT_1 pBDOH_1 pCO2_1 pDTYL_1 pETOH_1 pFORM_1 pGALC_1 pH(2)O_1 pLCTT_1 pO2_1 pPYR_1 pfl_1 pgiA_1 pgk_1 pgmB_1 pmg_1 pta_1 pycA_1 tpiA_1 unk_10 unk_11 unk_5 xylM_1 xylM_4 
+-ENZIRREV
+ATPm ATPp_1 adhA_1 als_1 butA_1 chem_1 citE_1 fbp_1 galK_1 galT_1 glk_1 icd_1 ilvA_1 ilvBN_1 ilvB_2 ilvD_1 ilvD_2 lacG_1 lacZ_1 mae_1 mleS_1 nox_1 nox_2 pGLUC_1 pdh_1 pfk_1 poxL_1 pstC_1 pstC_2 ptGALC_1 ptLACT_1 ptnC_1 ptnC_5 pyk_1 unk_16 unk_4 
+-METINT
+(R,R)-butane-2,3-diol (S)-lactate (S)-malate 1/2_O(2) 2,3-dihydroxy-3-methylbutanoate 2,3-dihydroxy-3-methylpentanoate 2-aceto-2-hydroxybutanoate 2-acetoin 2-acetolactate 2-oxobutanoate 2-oxoglutarate 2-phospho-D-glycerate 3-methyl-2-oxobutanoate 3-methyl-2-oxopentanoate 3-phospho-D-glycerate 3-phospho-D-glyceroyl_phosphate 3H(+) ADP ATP CO(2) CoA CoA_+NAD(+) D-fructose_1,6-bisphosphate D-fructose_6-phosphate D-galactose D-galactose_6-phosphate D-glucosamine_6-phosphate D-glucose D-glucose_1-phosphate D-glucose_6-phosphate D-glyceraldehyde_3-phosphate D-tagatose_1,6-bisphosphate D-tagatose_6-phosphate FAD FADH(2) H(+) H(2)0 H(2)O H(2)O(2) L-isoleucine L-leucine L-threonine L-valine NAD(+) NADH NADH+_(H)+ NADP(+) NADPH NH(3) O(2) UDP-galactose UDP-glucose UTP acetaldehyde acetate acetyl-CoA acetyl_phosphate alpha-D-galactose_1-phosphate beta-D-galactose beta-D-glucose beta-D-glucose_1-phosphate beta-D-glucose_6-phosphate beta-lactose citrate diacetyl diphosphate ethanol formate fumarate glycerone_phosphate isocitrate lactose lactose_6-phosphate oxaloacetate phosphate phosphoenolpyruvate pyruvate succinate succinyl-CoA 
+-METEXT
+3H(+)ext AALDext ACEText ACTNext ALCTText BDOHext CO(2)ext DTYLext ETOHext FORMext GALCext GLUCext GLUMext H(+)ext H(2)Oext ILEext LACText LCTText LEUext O(2)ext PPiext PYRext Piext VALext 
+-CAT
+glk_1 : ATP + D-glucose = ADP + D-glucose_6-phosphate
+pgiA_1 : D-glucose_6-phosphate = D-fructose_6-phosphate
+pfk_1 : ATP + D-fructose_6-phosphate = ADP + D-fructose_1,6-bisphosphate
+fbp_1 : D-fructose_1,6-bisphosphate + H(2)O = D-fructose_6-phosphate + phosphate
+fbaA_1 : D-fructose_1,6-bisphosphate = glycerone_phosphate + D-glyceraldehyde_3-phosphate
+tpiA_1 : glycerone_phosphate = D-glyceraldehyde_3-phosphate
+gapAB_1 : D-glyceraldehyde_3-phosphate + phosphate + NAD(+) = 3-phospho-D-glyceroyl_phosphate + NADH + H(+)
+pgk_1 : ADP + 3-phospho-D-glyceroyl_phosphate = ATP + 3-phospho-D-glycerate
+pgmB_1 : beta-D-glucose_1-phosphate = beta-D-glucose_6-phosphate
+pmg_1 : 3-phospho-D-glycerate = 2-phospho-D-glycerate
+enoAB_1 : 2-phospho-D-glycerate = phosphoenolpyruvate + H(2)O
+pyk_1 : ADP + phosphoenolpyruvate = ATP + pyruvate
+xylM_1 : D-glucose = beta-D-glucose
+gltA_1 : acetyl-CoA + H(2)O + oxaloacetate = citrate + CoA
+citB_1 : citrate = isocitrate
+icd_1 : isocitrate + NADP(+) = 2-oxoglutarate + CO(2) + NADPH + H(+)
+frdC_1 : succinate + FAD = fumarate + FADH(2)
+unk_4 : 2-oxoglutarate + NAD(+) + CoA = succinyl-CoA + NADH + H(+) + CO(2)
+unk_5 : succinyl-CoA + ADP + phosphate = succinate + CoA + ATP
+pycA_1 : ATP + pyruvate + CO(2) = ADP + phosphate + oxaloacetate
+galM_1 : D-galactose = beta-D-galactose
+galK_1 : ATP + D-galactose = ADP + alpha-D-galactose_1-phosphate
+galT_1 : UTP + alpha-D-galactose_1-phosphate = diphosphate + UDP-galactose
+galE_1 : UDP-galactose = UDP-glucose
+hasC_1 : UTP + D-glucose_1-phosphate = diphosphate + UDP-glucose
+femD_1 : D-glucose_1-phosphate = D-glucose_6-phosphate
+unk_10 : D-galactose_6-phosphate = D-tagatose_6-phosphate
+lacC_1 : D-tagatose_6-phosphate + ATP = D-tagatose_1,6-bisphosphate + ADP
+unk_11 : D-tagatose_1,6-bisphosphate = glycerone_phosphate + D-glyceraldehyde_3-phosphate
+lacZ_1 : lactose = D-galactose + D-glucose
+lacG_1 : lactose_6-phosphate = D-glucose + D-galactose_6-phosphate
+xylM_4 : lactose = beta-lactose
+citE_1 : citrate = acetate + oxaloacetate
+unk_16 : oxaloacetate = pyruvate + CO(2)
+ldh_1 : pyruvate + NADH + H(+) = (S)-lactate + NAD(+)
+pfl_1 : CoA + pyruvate = acetyl-CoA + formate
+pdh_1 : pyruvate + CoA_+NAD(+) = acetyl-CoA + CO(2) + NADH+_(H)+
+adhE_1 : acetyl-CoA + NADH = acetaldehyde + CoA + NAD(+)
+adhA_1 : acetaldehyde + NADH + H(+) = ethanol + NAD(+)
+pta_1 : acetyl-CoA + phosphate = CoA + acetyl_phosphate
+ackA_1 : ADP + acetyl_phosphate = ATP + acetate
+aldB_1 : 2-acetolactate = 2-acetoin + CO(2)
+butB_1 : 2-acetoin + NADH + H(+) = (R,R)-butane-2,3-diol + NAD(+)
+chem_1 : 2-acetolactate + O(2) = diacetyl + CO(2)
+butA_1 : diacetyl + NADH + H(+) = 2-acetoin + NAD(+)
+mleS_1 : (S)-malate = (S)-lactate + CO(2)
+mae_1 : (S)-malate + NAD(+) = pyruvate + CO(2) + NADH
+nox_1 : 1/2_O(2) + NADH + H(+) = H(2)O + NAD(+)
+poxL_1 : pyruvate + phosphate + O(2) + H(2)O = acetyl_phosphate + CO(2) + H(2)O(2)
+nox_2 : NADH + H(+) + O(2) = H(2)O(2) + NAD(+)
+ilvA_1 : L-threonine + H(2)O = 2-oxobutanoate + NH(3) + H(2)O
+ilvBN_1 : 2 pyruvate = 2-acetolactate + CO(2)
+als_1 : 2 pyruvate = 2-acetolactate + CO(2)
+ilvB_2 : pyruvate + 2-oxobutanoate = 2-aceto-2-hydroxybutanoate + CO(2)
+ilvC_1 : 2-acetolactate + NADPH + H(+) = 2,3-dihydroxy-3-methylbutanoate + NADP(+)
+ilvC_2 : 2-aceto-2-hydroxybutanoate + NADPH + H(+) = 2,3-dihydroxy-3-methylpentanoate + NADP(+)
+ilvD_1 : 2,3-dihydroxy-3-methylbutanoate = 3-methyl-2-oxobutanoate + H(2)O
+ilvD_2 : 2,3-dihydroxy-3-methylpentanoate = 3-methyl-2-oxopentanoate + H(2)O
+ptnC_1 : GLUCext + phosphoenolpyruvate = D-glucose_6-phosphate + pyruvate
+ptLACT_1 : LACText + phosphoenolpyruvate = lactose_6-phosphate + pyruvate
+ptGALC_1 : GALCext + phosphoenolpyruvate = D-galactose_6-phosphate + pyruvate
+ptnC_5 : GLUMext + phosphoenolpyruvate = D-glucosamine_6-phosphate + pyruvate
+pGLUC_1 : GLUCext + H(+)ext = D-glucose + H(+)
+lacS_1 : LACText + H(+)ext = lactose + H(+)
+pGALC_1 : GALCext + H(+)ext = D-galactose + H(+)
+ATPp_1 : ATP = ADP + phosphate
+brnQ_1 : LEUext + H(+)ext = L-leucine + H(+)
+brnQ_2 : ILEext + H(+)ext = L-isoleucine + H(+)
+brnQ_3 : VALext + H(+)ext = L-valine + H(+)
+pLCTT_1 : (S)-lactate + H(+) = LCTText + H(+)ext
+pPYR_1 : pyruvate + H(+) = PYRext + H(+)ext
+pFORM_1 : formate = FORMext
+pAALD_1 : acetaldehyde = AALDext
+pETOH_1 : ethanol = ETOHext
+pACET_1 : acetate + H(+) = ACEText + H(+)ext
+pBDOH_1 : (R,R)-butane-2,3-diol = BDOHext
+pDTYL_1 : diacetyl = DTYLext
+pACTN_1 : 2-acetoin = ACTNext
+pALCTT_1 : 2-acetolactate = ALCTText
+pCO2_1 : CO(2) = CO(2)ext
+pO2_1 : O(2)ext = O(2)
+pstC_1 : Piext + H(+)ext = phosphate + H(+)
+pstC_2 : PPiext + H(+)ext = diphosphate + H(+)
+pH(2)O_1 : H(2)Oext = H(2)O
+ATPm : ATP = ADP + phosphate
+ATPase : 3H(+)ext + ADP + phosphate = ATP + 3H(+) + H(2)0
