@@ -281,6 +281,7 @@ int main(int argc,char** argv)
 
         std::string ligne; // variable contenant chaque ligne lue
         // cette boucle s'arrête dès qu'une erreur de lecture survient
+        size_t cpt = 0;
         while ( std::getline( fichier, ligne ) )
         {
             auto position = ligne.find(":");
@@ -306,12 +307,15 @@ int main(int argc,char** argv)
 
                 auto vec_nom = decoupe(debut," + ") ;
                 removeElem(vec_nom,"+");
+                cpt =0;
                 for ( auto s : vec_nom)
                 {
+
                     s = replaceAll(s ," ","_");
                     s = fixStochio(s);
                     cat.back() += s;
-                    if ( s != vec_nom.back() )
+                     cpt++;
+                    if ( cpt != vec_nom.size() )
                     {
                          cat.back() += " + ";
                     }
@@ -327,12 +331,14 @@ int main(int argc,char** argv)
 
                 vec_nom = decoupe(fin," + ") ;
                 removeElem(vec_nom,"+");
+                cpt=0;
                 for ( auto s : vec_nom)
                 {
                     s = replaceAll(s ," ","_");
                     s = fixStochio(s);
                     cat.back() += s;
-                    if ( s != vec_nom.back() )
+                     cpt++;
+                    if ( cpt != vec_nom.size() )
                     {
                          cat.back() += " + ";
                     }
@@ -363,12 +369,14 @@ int main(int argc,char** argv)
 
                 auto vec_nom = decoupe(debut," + ") ;
                 removeElem(vec_nom,"+");
+                cpt=0;
                 for ( auto s : vec_nom)
                 {
                     s = replaceAll(s ," ","_");
                     s = fixStochio(s);
                     cat.back() += s;
-                    if ( s != vec_nom.back() )
+                     cpt++;
+                    if ( cpt != vec_nom.size() )
                     {
                          cat.back() += " + ";
                     }
@@ -384,12 +392,14 @@ int main(int argc,char** argv)
 
                 vec_nom = decoupe(fin," + ") ;
                 removeElem(vec_nom,"+");
+                cpt=0;
                 for ( auto s : vec_nom)
                 {
                     s = replaceAll(s ," ","_");
                     s = fixStochio(s);
                     cat.back() += s;
-                    if ( s != vec_nom.back() )
+                     cpt++;
+                    if ( cpt != vec_nom.size() )
                     {
                          cat.back() += " + ";
                     }

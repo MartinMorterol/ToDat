@@ -11,14 +11,14 @@ ATPm ATPp_1 adhA_1 als_1 butA_1 chem_1 citE_1 fbp_1 galK_1 galT_1 glk_1 icd_1 il
 AALDext ACEText ACTNext ALCTText BDOHext CO(2)ext DTYLext ETOHext FORMext GALCext GLUCext GLUMext H(+)ext H(2)Oext ILEext LACText LCTText LEUext O(2)ext PPiext PYRext Piext VALext 
 -CAT
 glk_1 : ATP + D-glucose = ADP + D-glucose_6-phosphate
-pgiA_1 : D-glucose_6-phosphate + D-fructose_6-phosphate
-pfk_1 : ATP + D-fructose_6-phosphate + ADP + D-fructose_1,6-bisphosphate
+pgiA_1 : D-glucose_6-phosphate = D-fructose_6-phosphate
+pfk_1 : ATP + D-fructose_6-phosphate = ADP + D-fructose_1,6-bisphosphate
 fbp_1 : D-fructose_1,6-bisphosphate + H(2)O = D-fructose_6-phosphate + phosphate
-fbaA_1 : D-fructose_1,6-bisphosphate + glycerone_phosphate + D-glyceraldehyde_3-phosphate
-tpiA_1 : glycerone_phosphate + D-glyceraldehyde_3-phosphate
+fbaA_1 : D-fructose_1,6-bisphosphate = glycerone_phosphate + D-glyceraldehyde_3-phosphate
+tpiA_1 : glycerone_phosphate = D-glyceraldehyde_3-phosphate
 gapAB_1 : D-glyceraldehyde_3-phosphate + phosphate + NAD(+) = 3-phospho-D-glyceroyl_phosphate + NADH + H(+)
-pgk_1 : ADP + 3-phospho-D-glyceroyl_phosphate + ATP + 3-phospho-D-glycerate
-pgmB_1 : beta-D-glucose_1-phosphate + beta-D-glucose_6-phosphate
+pgk_1 : ADP + 3-phospho-D-glyceroyl_phosphate = ATP + 3-phospho-D-glycerate
+pgmB_1 : beta-D-glucose_1-phosphate = beta-D-glucose_6-phosphate
 pmg_1 : 3-phospho-D-glycerate = 2-phospho-D-glycerate
 enoAB_1 : 2-phospho-D-glycerate = phosphoenolpyruvate + H(2)O
 pyk_1 : ADP + phosphoenolpyruvate = ATP + pyruvate
@@ -32,25 +32,25 @@ unk_5 : succinyl-CoA + ADP + phosphate = succinate + CoA + ATP
 pycA_1 : ATP + pyruvate + CO(2) = ADP + phosphate + oxaloacetate
 galM_1 : D-galactose = beta-D-galactose
 galK_1 : ATP + D-galactose = ADP + alpha-D-galactose_1-phosphate
-galT_1 : UTP + alpha-D-galactose_1-phosphate + diphosphate + UDP-galactose
+galT_1 : UTP + alpha-D-galactose_1-phosphate = diphosphate + UDP-galactose
 galE_1 : UDP-galactose = UDP-glucose
-hasC_1 : UTP + D-glucose_1-phosphate + diphosphate + UDP-glucose
-femD_1 : D-glucose_1-phosphate + D-glucose_6-phosphate
-unk_10 : D-galactose_6-phosphate + D-tagatose_6-phosphate
+hasC_1 : UTP + D-glucose_1-phosphate = diphosphate + UDP-glucose
+femD_1 : D-glucose_1-phosphate = D-glucose_6-phosphate
+unk_10 : D-galactose_6-phosphate = D-tagatose_6-phosphate
 lacC_1 : D-tagatose_6-phosphate + ATP = D-tagatose_1,6-bisphosphate + ADP
-unk_11 : D-tagatose_1,6-bisphosphate + glycerone_phosphate + D-glyceraldehyde_3-phosphate
+unk_11 : D-tagatose_1,6-bisphosphate = glycerone_phosphate + D-glyceraldehyde_3-phosphate
 lacZ_1 : lactose = D-galactose + D-glucose
-lacG_1 : lactose_6-phosphate + D-glucose + D-galactose_6-phosphate
+lacG_1 : lactose_6-phosphate = D-glucose + D-galactose_6-phosphate
 xylM_4 : lactose = beta-lactose
 citE_1 : citrate = acetate + oxaloacetate
 unk_16 : oxaloacetate = pyruvate + CO(2)
 ldh_1 : pyruvate + NADH + H(+) = (S)-lactate + NAD(+)
 pfl_1 : CoA + pyruvate = acetyl-CoA + formate
-pdh_1 : pyruvate + CoA_+NAD(+) + acetyl-CoA + CO(2) + NADH+_(H)+
+pdh_1 : pyruvate + CoA_+NAD(+) = acetyl-CoA + CO(2) + NADH+_(H)+
 adhE_1 : acetyl-CoA + NADH = acetaldehyde + CoA + NAD(+)
 adhA_1 : acetaldehyde + NADH + H(+) = ethanol + NAD(+)
 pta_1 : acetyl-CoA + phosphate = CoA + acetyl_phosphate
-ackA_1 : ADP + acetyl_phosphate + ATP + acetate
+ackA_1 : ADP + acetyl_phosphate = ATP + acetate
 aldB_1 : 2-acetolactate = 2-acetoin + CO(2)
 butB_1 : 2-acetoin + NADH + H(+) = (R,R)-butane-2,3-diol + NAD(+)
 chem_1 : 2-acetolactate + O(2) = diacetyl + CO(2)
