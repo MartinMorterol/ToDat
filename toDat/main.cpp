@@ -14,6 +14,7 @@
 #include <functional>
 #include <cctype>
 #include <locale>
+#include <stdexcept>
 
 /// copier coller google :D
 // trim from start
@@ -51,8 +52,7 @@ bool isReversible (string& deuxiemePartieDeLigne )
     }
     else
     {
-        cout << "fichier mal formé "<< endl;
-        exit(5);
+        throw std::logic_error("une ligne n'a pas de -> apres des : (pas de : est possible aussi)");
     }
 }
 
@@ -213,10 +213,23 @@ int main(int argc,char** argv)
 
         std::string ligne; // variable contenant chaque ligne lue
         // cette boucle s'arrête dès qu'une erreur de lecture survient
-
+        size_t nbLigne = 0;
         while ( std::getline( fichier, ligne ) )
         {
+            nbLigne++;
+
+            ligne = trim(ligne);
+            if ( ligne.empty() )
+            {
+                continue;
+            }
+
             auto position = ligne.find(":");
+            if ( string::npos == position )
+            {
+                cout << "la ligne "<< nbLigne << " n'a pas de : " << endl;
+                exit(5);
+            }
             string temp = ligne.substr(0,position);
             string nomEnzime = trim(temp);
             nomEnzime = replaceAll(nomEnzime ," ","_");
@@ -224,15 +237,25 @@ int main(int argc,char** argv)
 
             string deuxieme_partie = ligne.substr(position+1);
 
-            if ( isReversible(deuxieme_partie) )
+
+            try
             {
-                analyzeReaction(deuxieme_partie,"<->",enzimeR,meta,cat);
-                enzimeR.insert(nomEnzime);
+                if ( isReversible(deuxieme_partie) )
+                {
+                    analyzeReaction(deuxieme_partie,"<->",enzimeR,meta,cat);
+                    enzimeR.insert(nomEnzime);
+                }
+                else
+                {
+                    analyzeReaction(deuxieme_partie,"->",enzimeI,meta,cat);
+                    enzimeI.insert(nomEnzime);
+                }
             }
-            else
+            catch (const std::logic_error & ex)
             {
-                analyzeReaction(deuxieme_partie,"->",enzimeI,meta,cat);
-                enzimeI.insert(nomEnzime);
+                cout << ex.what() << endl;
+                cout << "ligne : " << nbLigne <<endl;
+                exit(5);
             }
 
 
